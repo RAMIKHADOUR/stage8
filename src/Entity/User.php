@@ -73,6 +73,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
 
     public function __construct()
     {
@@ -254,6 +257,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
     }
 
 
